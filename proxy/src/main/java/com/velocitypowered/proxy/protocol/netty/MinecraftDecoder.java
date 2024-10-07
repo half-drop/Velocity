@@ -77,7 +77,7 @@ public class MinecraftDecoder extends ChannelInboundHandlerAdapter {
       ctx.fireChannelRead(buf);
     } else {
       try {
-        doLengthSanityChecks(buf, packet);
+        //doLengthSanityChecks(buf, packet);
 
         try {
           packet.decode(buf, direction, registry.version);
