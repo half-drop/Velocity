@@ -107,20 +107,10 @@ public class MinecraftDecoder extends ChannelInboundHandlerAdapter {
   }
 
   private Exception handleOverflow(MinecraftPacket packet, int expected, int actual) {
-    if (DEBUG) {
-      return new CorruptedFrameException("Packet sent for " + packet.getClass() + " was too "
-          + "big (expected " + expected + " bytes, got " + actual + " bytes)");
-    } else {
-      return DECODE_FAILED;
-    }
+    return null;
   }
 
   private Exception handleUnderflow(MinecraftPacket packet, int expected, int actual) {
-   
-    System.out.println("Warning: Packet sent for " + packet.getClass() + 
-                       " was too big (expected " + expected + " bytes, got " + actual + " bytes).");
-    
-    // Optionally return null to avoid interrupting the connection
     return null;
   }
 
