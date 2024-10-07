@@ -86,7 +86,8 @@ public class MinecraftDecoder extends ChannelInboundHandlerAdapter {
         }
 
         if (buf.isReadable()) {
-          throw handleOverflow(packet, buf.readerIndex(), buf.writerIndex());
+          //throw handleOverflow(packet, buf.readerIndex(), buf.writerIndex());
+          return;
         }
         ctx.fireChannelRead(packet);
       } finally {
@@ -107,11 +108,11 @@ public class MinecraftDecoder extends ChannelInboundHandlerAdapter {
   }
 
   private Exception handleOverflow(MinecraftPacket packet, int expected, int actual) {
-    return new CorruptedFrameException("Packet size mismatch (handled safely).");
+    return null;
   }
 
   private Exception handleUnderflow(MinecraftPacket packet, int expected, int actual) {
-    return new CorruptedFrameException("Packet size mismatch (handled safely).");
+    return null;
   }
 
   private Exception handleDecodeFailure(Exception cause, MinecraftPacket packet, int packetId) {
