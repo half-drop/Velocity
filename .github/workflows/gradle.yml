@@ -30,4 +30,4 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: velocity-jar
-        path: build/libs/*.jar
+        path: proxy/build/libs/*-all.jar
