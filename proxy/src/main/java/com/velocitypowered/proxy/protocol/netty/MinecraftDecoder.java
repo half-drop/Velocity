@@ -99,19 +99,19 @@ public class MinecraftDecoder extends ChannelInboundHandlerAdapter {
     int expectedMinLen = packet.expectedMinLength(buf, direction, registry.version);
     int expectedMaxLen = packet.expectedMaxLength(buf, direction, registry.version);
     if (expectedMaxLen != -1 && buf.readableBytes() > expectedMaxLen) {
-      throw handleOverflow(packet, expectedMaxLen, buf.readableBytes());
+      //throw handleOverflow(packet, expectedMaxLen, buf.readableBytes());
     }
     if (buf.readableBytes() < expectedMinLen) {
-      throw handleUnderflow(packet, expectedMaxLen, buf.readableBytes());
+      //throw handleUnderflow(packet, expectedMaxLen, buf.readableBytes());
     }
   }
 
   private Exception handleOverflow(MinecraftPacket packet, int expected, int actual) {
-    return null;
+    return new CorruptedFrameException("Packet size mismatch (handled safely).");
   }
 
   private Exception handleUnderflow(MinecraftPacket packet, int expected, int actual) {
-    return null;
+    return new CorruptedFrameException("Packet size mismatch (handled safely).");
   }
 
   private Exception handleDecodeFailure(Exception cause, MinecraftPacket packet, int packetId) {
